@@ -1,0 +1,65 @@
+---
+---
+
+<section class="section final">
+  <div class="container final__inner" data-reveal>
+    <div class="badge final__badge">
+      <span class="badge__dot"></span>
+      Your link is still available
+    </div>
+    <h2 class="display final__title">Go claim it before someone else does.</h2>
+    <form class="claim final__claim" onsubmit="return false;">
+      <span class="claim__prefix">pop.site/</span>
+      <input
+        class="claim__input"
+        type="text"
+        placeholder="yourname"
+        aria-label="Choose your handle"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="btn btn--primary claim__btn" type="submit">Claim your link</button>
+    </form>
+    <p class="caption final__hint">Free forever on the base plan · No credit card · Live in 3 minutes</p>
+  </div>
+</section>
+
+<style>
+  .final {
+    padding-block: var(--spacing-120);
+  }
+
+  .final__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .final__badge {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .final__title {
+    max-width: 16ch;
+  }
+
+  .final__claim {
+    margin-top: var(--spacing-40);
+  }
+
+  .final__hint {
+    margin-top: var(--spacing-16);
+  }
+
+  @media (max-width: 560px) {
+    .final__claim {
+      flex-wrap: wrap;
+      border-radius: 22px;
+      padding: 12px;
+    }
+    .final__claim .claim__btn {
+      width: 100%;
+    }
+  }
+</style>

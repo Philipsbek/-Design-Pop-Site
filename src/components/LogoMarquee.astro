@@ -1,0 +1,69 @@
+---
+const logos = [
+  'Northwind', 'Atlas Studio', 'Field Notes', 'Café Marlow', 'Theo Plays',
+  'Maya Builds', 'Loop', 'Verdant', 'Papertrail', 'Hearth',
+];
+---
+
+<section class="marquee-wrap section--tight" aria-label="Trusted by">
+  <p class="caption marquee-label" data-reveal>
+    Trusted by the people building the good stuff
+  </p>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {logos.map((l) => <span class="marquee__item">{l}</span>)}
+      {logos.map((l) => <span class="marquee__item">{l}</span>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-wrap {
+    padding-block: var(--spacing-60);
+  }
+
+  .marquee-label {
+    text-align: center;
+    margin-bottom: var(--spacing-24);
+  }
+
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    gap: var(--spacing-60);
+    width: max-content;
+    animation: scroll-x 38s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .marquee__item {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-mist);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .marquee__item:hover {
+    color: var(--color-charcoal);
+  }
+
+  @keyframes scroll-x {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

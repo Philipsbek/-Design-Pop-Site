@@ -1,0 +1,160 @@
+---
+const links = [
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Sections', href: '#sections' },
+  { label: 'Templates', href: '#templates' },
+  { label: 'Featured', href: '#featured' },
+  { label: 'Blog', href: '#footer' },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="container nav__inner">
+    <a href="#top" class="nav__brand" aria-label="pop site home">
+      pop site<span class="nav__star">*</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="nav__actions">
+      <a href="#claim" class="nav__login">Log in</a>
+      <a href="#claim" class="nav__cta">Create account</a>
+    </div>
+
+    <button class="nav__burger" aria-label="Open menu" data-burger>
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .nav.is-scrolled {
+    border-bottom-color: var(--color-mist);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: var(--spacing-24);
+  }
+
+  .nav__brand {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.03em;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .nav__star {
+    color: var(--color-signal-blue);
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-24);
+    margin-left: auto;
+    margin-right: var(--spacing-24);
+  }
+
+  .nav__links a {
+    font-size: 14px;
+    color: var(--color-charcoal);
+    transition: color 0.18s ease;
+    position: relative;
+  }
+
+  .nav__links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1.5px;
+    width: 0;
+    background: var(--color-signal-blue);
+    transition: width 0.22s ease;
+  }
+
+  .nav__links a:hover {
+    color: #000;
+  }
+
+  .nav__links a:hover::after {
+    width: 100%;
+  }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-16);
+  }
+
+  .nav__login {
+    font-size: 14px;
+    color: var(--color-charcoal);
+  }
+
+  .nav__login:hover {
+    color: #000;
+  }
+
+  .nav__cta {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    border: 1px solid var(--color-charcoal);
+    border-radius: 9999px;
+    padding: 8px 16px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .nav__cta:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  .nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+  }
+
+  .nav__burger span {
+    width: 22px;
+    height: 2px;
+    background: #000;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .nav__links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nav__actions {
+      display: none;
+    }
+    .nav__burger {
+      display: flex;
+    }
+  }
+</style>

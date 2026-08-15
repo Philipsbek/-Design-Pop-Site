@@ -1,0 +1,217 @@
+---
+import PhoneMockup from './PhoneMockup.astro';
+---
+
+<section class="hero" id="top">
+  <div class="container hero__inner">
+    <div class="badge hero__badge" data-reveal>
+      <span class="badge__dot"></span>
+      Loved by <b>180,000+</b> makers, shops &amp; creators
+    </div>
+
+    <h1 class="display-xl hero__title" data-reveal style="--reveal-delay:60ms">
+      One link.<br />Your whole <span class="hero__ital">world.</span>
+    </h1>
+
+    <p class="subheading hero__sub" data-reveal style="--reveal-delay:120ms">
+      Pop Site is the fastest way to build a beautiful one-page site — links,
+      socials, forms and sales, all living on a single link people actually click.
+    </p>
+
+    <form class="claim" id="claim" data-reveal style="--reveal-delay:180ms" onsubmit="return false;">
+      <span class="claim__prefix">pop.site/</span>
+      <input
+        class="claim__input"
+        type="text"
+        placeholder="yourname"
+        aria-label="Choose your handle"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="btn btn--primary claim__btn" type="submit">Claim your link</button>
+    </form>
+
+    <p class="caption hero__hint" data-reveal style="--reveal-delay:220ms">
+      Free forever on the base plan. No credit card. Live in about 3 minutes.
+    </p>
+  </div>
+
+  <div class="hero__stage" data-reveal style="--reveal-delay:120ms">
+    <div class="hero__fan">
+      <PhoneMockup template="shop" class="fan-item fan-item--1" photoSeed="hero-a" eager />
+      <PhoneMockup template="creator" class="fan-item fan-item--2" photoSeed="hero-b" eager />
+      <PhoneMockup template="event" class="fan-item fan-item--3" photoSeed="hero-c" eager />
+      <PhoneMockup template="studio" class="fan-item fan-item--4" photoSeed="hero-d" eager />
+      <PhoneMockup template="menu" class="fan-item fan-item--5" photoSeed="hero-e" eager />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: var(--spacing-80);
+    padding-bottom: var(--spacing-60);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__badge {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .hero__title {
+    max-width: 15ch;
+  }
+
+  .hero__ital {
+    font-style: italic;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__sub {
+    max-width: 56ch;
+    margin-top: var(--spacing-24);
+    font-size: var(--text-subheading);
+  }
+
+  /* Inline claim form — the whole assembly is one unified pill */
+  .claim {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff;
+    border: 1px solid var(--color-charcoal);
+    border-radius: 9999px;
+    padding: 6px 6px 6px 20px;
+    margin-top: var(--spacing-36);
+    width: min(520px, 100%);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .claim:focus-within {
+    border-color: var(--color-signal-blue);
+    box-shadow: 0 0 0 4px var(--color-wash-blue);
+  }
+
+  .claim__prefix {
+    font-family: var(--font-inter);
+    font-size: 15px;
+    color: var(--color-slate);
+    white-space: nowrap;
+  }
+
+  .claim__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-family: var(--font-inter);
+    font-size: 15px;
+    color: var(--color-charcoal);
+    background: transparent;
+    padding: 8px 4px;
+  }
+
+  .claim__input::placeholder {
+    color: var(--color-mist);
+  }
+
+  .claim__btn {
+    flex: none;
+  }
+
+  .hero__hint {
+    margin-top: var(--spacing-16);
+  }
+
+  /* --------------- Phone fan --------------- */
+  .hero__stage {
+    margin-top: var(--spacing-80);
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--spacing-24);
+  }
+
+  .hero__fan {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hero__fan :global(.fan-item) {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero__fan :global(.fan-item:not(:first-child)) {
+    margin-left: -110px;
+  }
+
+  .hero__fan :global(.fan-item--1) {
+    transform: rotate(-9deg) translateY(26px);
+    z-index: 1;
+  }
+  .hero__fan :global(.fan-item--2) {
+    transform: rotate(-4.5deg) translateY(8px);
+    z-index: 2;
+  }
+  .hero__fan :global(.fan-item--3) {
+    transform: rotate(0deg) translateY(-8px);
+    z-index: 3;
+  }
+  .hero__fan :global(.fan-item--4) {
+    transform: rotate(4.5deg) translateY(8px);
+    z-index: 2;
+  }
+  .hero__fan :global(.fan-item--5) {
+    transform: rotate(9deg) translateY(26px);
+    z-index: 1;
+  }
+
+  .hero__fan:hover :global(.fan-item--1) {
+    transform: rotate(-13deg) translateY(20px) translateX(-14px);
+  }
+  .hero__fan:hover :global(.fan-item--5) {
+    transform: rotate(13deg) translateY(20px) translateX(14px);
+  }
+  .hero__fan:hover :global(.fan-item--3) {
+    transform: rotate(0deg) translateY(-18px);
+  }
+
+  @media (max-width: 900px) {
+    .hero__fan :global(.fan-item--1),
+    .hero__fan :global(.fan-item--5) {
+      display: none;
+    }
+    .hero__fan :global(.fan-item:not(:first-child)) {
+      margin-left: -90px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero__fan :global(.fan-item--2),
+    .hero__fan :global(.fan-item--4) {
+      display: none;
+    }
+    .hero__fan :global(.fan-item:not(:first-child)) {
+      margin-left: 0;
+    }
+    .hero__fan :global(.fan-item--3) {
+      transform: none;
+    }
+    .claim {
+      flex-wrap: wrap;
+      border-radius: 22px;
+      padding: 12px;
+    }
+    .claim__btn {
+      width: 100%;
+    }
+  }
+</style>

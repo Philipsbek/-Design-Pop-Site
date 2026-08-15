@@ -1,0 +1,145 @@
+---
+const cards = [
+  {
+    tag: 'Links',
+    title: 'Links',
+    desc: 'Stack every link that matters into tappable pills. Reorder them in a drag, no code needed.',
+    seed: 'sec-links',
+  },
+  {
+    tag: 'Socials',
+    title: 'Socials',
+    desc: 'Pull in your handles once and Pop Site keeps every icon and follower count fresh.',
+    seed: 'sec-socials',
+  },
+  {
+    tag: 'Forms',
+    title: 'Forms',
+    desc: 'Collect emails, RSVPs and answers with forms that submit without ever leaving your page.',
+    seed: 'sec-forms',
+  },
+  {
+    tag: 'Store',
+    title: 'Store',
+    desc: 'Sell products, downloads and bookings. Checkout is built in and takes cards on day one.',
+    seed: 'sec-store',
+  },
+  {
+    tag: 'Gallery',
+    title: 'Gallery',
+    desc: 'Show your work in a grid, a carousel or a full-bleed cover. Your photos, your rhythm.',
+    seed: 'sec-gallery',
+  },
+  {
+    tag: 'Embeds',
+    title: 'Embeds',
+    desc: 'Drop in a video, a playlist or a map and it renders inline — no ugly link previews.',
+    seed: 'sec-embeds',
+  },
+];
+---
+
+<section class="section" id="sections">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="heading" data-reveal>Sections designed to get clicks, leads and sales</h2>
+      <p class="subheading" data-reveal style="--reveal-delay:60ms">
+        Mix and match a dozen block types. Each one is styled to feel like it was
+        made just for you — because it was.
+      </p>
+      <a href="#templates" class="link-blue" data-reveal style="--reveal-delay:120ms">
+        See all below <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="grid">
+      {
+        cards.map((c, i) => (
+          <article class="card grid__card" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+            <div class="grid__preview">
+              <img
+                src={`https://picsum.photos/seed/${c.seed}/520/360`}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="520"
+                height="360"
+              />
+            </div>
+            <div class="grid__meta">
+              <h3 class="grid__title">{c.title}</h3>
+              <p class="grid__desc">{c.desc}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-20);
+  }
+
+  .grid__card {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+
+  .grid__card:hover {
+    transform: translateY(-4px);
+    border-color: #000;
+  }
+
+  .grid__preview {
+    background: var(--color-surface-soft);
+    border-radius: var(--radius-cards);
+    overflow: hidden;
+    aspect-ratio: 16 / 11;
+  }
+
+  .grid__preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .grid__card:hover .grid__preview img {
+    transform: scale(1.05);
+  }
+
+  .grid__meta {
+    padding-top: var(--spacing-16);
+  }
+
+  .grid__title {
+    font-size: var(--text-subheading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  .grid__desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-granite);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 540px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

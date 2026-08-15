@@ -1,0 +1,56 @@
+---
+const stats = [
+  { value: '180K+', label: 'sites launched' },
+  { value: '3 min', label: 'average time to live' },
+  { value: '42M', label: 'clicks routed monthly' },
+  { value: '4.9/5', label: 'from 12,000 reviews' },
+];
+---
+
+<section class="section--tight" id="featured">
+  <div class="container">
+    <div class="stats" data-reveal>
+      {
+        stats.map((s) => (
+          <div class="stats__item">
+            <div class="stats__value">{s.value}</div>
+            <div class="stats__label">{s.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    background: var(--color-wash-blue);
+    border-radius: var(--radius-images);
+    padding: var(--spacing-60) var(--spacing-40);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-24);
+    text-align: center;
+  }
+
+  .stats__value {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: #000;
+  }
+
+  .stats__label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--color-charcoal);
+  }
+
+  @media (max-width: 720px) {
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-36);
+    }
+  }
+</style>

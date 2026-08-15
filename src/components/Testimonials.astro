@@ -1,0 +1,156 @@
+---
+const quotes = [
+  {
+    quote:
+      'I moved my whole shop onto one Pop Site link and sold out my first ceramics drop in nine minutes. It just looks expensive.',
+    name: 'Inês Carvalho',
+    role: 'Northwind Goods',
+    seed: 'av-ines',
+  },
+  {
+    quote:
+      'Setup took a coffee break. The type is gorgeous out of the box — I did not touch a single setting and it still looks like I hired a designer.',
+    name: 'Theo Rivera',
+    role: 'Musician',
+    seed: 'av-theo',
+  },
+  {
+    quote:
+      'Every RSVP for the festival came through one page. The forms just work and the analytics told me exactly which talk sold tickets.',
+    name: 'Dara Owens',
+    role: 'Field Notes Fest',
+    seed: 'av-dara',
+  },
+  {
+    quote:
+      'My link-in-bio finally feels like me instead of a list. Subscribers doubled the month I switched over.',
+    name: 'Maya Okafor',
+    role: 'Product designer',
+    seed: 'av-maya',
+  },
+  {
+    quote:
+      'We run the whole studio site off Pop Site now. Clients think we built it from scratch. We built it before lunch.',
+    name: 'Sol Nakamura',
+    role: 'Atlas Studio',
+    seed: 'av-sol',
+  },
+];
+---
+
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="heading" data-reveal>People pop off about it.</h2>
+      <p class="subheading" data-reveal style="--reveal-delay:60ms">
+        180,000 makers, and the reviews read like fan mail.
+      </p>
+    </div>
+  </div>
+
+  <div class="tmarquee" aria-label="Customer reviews">
+    <div class="tmarquee__track">
+      {
+        [...quotes, ...quotes].map((q) => (
+          <figure class="quote card">
+            <blockquote class="quote__text">“{q.quote}”</blockquote>
+            <figcaption class="quote__by">
+              <img
+                class="quote__avatar"
+                src={`https://picsum.photos/seed/${q.seed}/96/96`}
+                alt=""
+                loading="lazy"
+                width="96"
+                height="96"
+              />
+              <span>
+                <span class="quote__name">{q.name}</span>
+                <span class="quote__role">{q.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .tmarquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .tmarquee__track {
+    display: flex;
+    gap: var(--spacing-20);
+    width: max-content;
+    padding-inline: var(--spacing-24);
+    animation: tscroll 60s linear infinite;
+  }
+
+  .tmarquee:hover .tmarquee__track {
+    animation-play-state: paused;
+  }
+
+  .quote {
+    width: 380px;
+    flex: none;
+    border-radius: var(--radius-feature-cards);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--spacing-20);
+    padding: var(--spacing-24);
+  }
+
+  .quote__text {
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--color-charcoal);
+  }
+
+  .quote__by {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .quote__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: none;
+  }
+
+  .quote__name {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .quote__role {
+    display: block;
+    font-size: 12px;
+    color: var(--color-slate);
+  }
+
+  @keyframes tscroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 460px) {
+    .quote {
+      width: 300px;
+    }
+  }
+</style>

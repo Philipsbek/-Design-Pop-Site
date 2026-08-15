@@ -1,0 +1,161 @@
+---
+const items = [
+  { name: 'The Ceramics Drop', cat: 'Shop', seed: 'tpl-ceramics', h: 'tall' },
+  { name: 'Field Notes Fest', cat: 'Event', seed: 'tpl-fest', h: 'short' },
+  { name: 'Maya Okafor', cat: 'Creator', seed: 'tpl-maya', h: 'short' },
+  { name: 'Atlas Studio', cat: 'Portfolio', seed: 'tpl-atlas', h: 'tall' },
+  { name: 'Café Marlow', cat: 'Local', seed: 'tpl-cafe', h: 'short' },
+  { name: 'Theo Rivera', cat: 'Music', seed: 'tpl-theo', h: 'tall' },
+  { name: 'Verdant Plants', cat: 'Shop', seed: 'tpl-plants', h: 'short' },
+  { name: 'Papertrail', cat: 'Newsletter', seed: 'tpl-paper', h: 'short' },
+];
+---
+
+<section class="section templates" id="templates">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="heading" data-reveal>Made in Pop Site. Made to be clicked.</h2>
+      <p class="subheading" data-reveal style="--reveal-delay:60ms">
+        Start from a real site, not a wireframe. Every template below is live —
+        swap the words and photos and it's yours in minutes.
+      </p>
+      <a href="#claim" class="link-blue" data-reveal style="--reveal-delay:120ms">
+        Browse the full gallery <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="masonry">
+      {
+        items.map((it, i) => (
+          <a
+            href="#claim"
+            class={`tpl tpl--${it.h}`}
+            data-reveal
+            style={`--reveal-delay:${(i % 4) * 70}ms`}
+          >
+            <div class="tpl__img">
+              <img
+                src={`https://picsum.photos/seed/${it.seed}/600/800`}
+                alt={`${it.name} — a ${it.cat.toLowerCase()} site built with Pop Site`}
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
+              />
+            </div>
+            <div class="tpl__meta">
+              <span class="tpl__cat">{it.cat}</span>
+              <span class="tpl__name">{it.name}</span>
+              <span class="tpl__use">Use template →</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .masonry {
+    columns: 4;
+    column-gap: var(--spacing-20);
+  }
+
+  .tpl {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: var(--spacing-20);
+    border: 1px solid var(--color-charcoal);
+    border-radius: var(--radius-images);
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+
+  .tpl:hover {
+    transform: translateY(-5px);
+    border-color: #000;
+  }
+
+  .tpl__img {
+    overflow: hidden;
+  }
+
+  .tpl--tall .tpl__img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .tpl--short .tpl__img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .tpl__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tpl:hover .tpl__img img {
+    transform: scale(1.06);
+  }
+
+  .tpl__meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.62) 100%);
+  }
+
+  .tpl__cat {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .tpl__name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .tpl__use {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 6px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .tpl:hover .tpl__use {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1000px) {
+    .masonry {
+      columns: 3;
+    }
+  }
+  @media (max-width: 700px) {
+    .masonry {
+      columns: 2;
+    }
+  }
+  @media (max-width: 440px) {
+    .masonry {
+      columns: 1;
+    }
+  }
+</style>

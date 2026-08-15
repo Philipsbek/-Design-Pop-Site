@@ -1,0 +1,191 @@
+---
+// A phone frame that renders a mini one-page "pop site" template inside.
+// The screen content is the visual hero of the whole design system, so each
+// template mirrors what a real user could build: a stock cover photo, a name,
+// a few pill links, and at most one blue CTA.
+
+interface Props {
+  template?: 'creator' | 'shop' | 'event' | 'studio' | 'links' | 'menu';
+  photoSeed?: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const { template = 'creator', photoSeed, class: className = '', eager = false } = Astro.props;
+
+const seed = photoSeed ?? template;
+const cover = `https://picsum.photos/seed/${seed}/480/640`;
+
+const templates = {
+  creator: {
+    cover: `https://picsum.photos/seed/${seed}-creator/480/540`,
+    handle: '@maya.builds',
+    name: 'Maya Okafor',
+    bio: 'Product designer & maker. New drop every Friday.',
+    links: ['Latest newsletter', 'Design shop', 'Book a 1:1'],
+    cta: 'Subscribe',
+    accent: false,
+  },
+  shop: {
+    cover: `https://picsum.photos/seed/${seed}-shop/480/540`,
+    handle: 'northwind.goods',
+    name: 'Northwind Goods',
+    bio: 'Small-batch ceramics, made in Lisbon.',
+    links: ['Shop all', 'Lookbook', 'Care guide'],
+    cta: 'Shop the drop',
+    accent: true,
+  },
+  event: {
+    cover: `https://picsum.photos/seed/${seed}-event/480/540`,
+    handle: 'field.notes.fest',
+    name: 'Field Notes Fest',
+    bio: 'Two days of talks, type & tinkering. Sept 12–13.',
+    links: ['Full schedule', 'Speakers', 'Getting there'],
+    cta: 'Claim a ticket',
+    accent: true,
+  },
+  studio: {
+    cover: `https://picsum.photos/seed/${seed}-studio/480/540`,
+    handle: 'atlas.studio',
+    name: 'Atlas Studio',
+    bio: 'Brand & motion for people who ship.',
+    links: ['Selected work', 'About us', 'Careers'],
+    cta: 'Start a project',
+    accent: false,
+  },
+  links: {
+    cover: `https://picsum.photos/seed/${seed}-links/480/540`,
+    handle: '@theo.plays',
+    name: 'Theo Rivera',
+    bio: 'Music, streams and the occasional cat video.',
+    links: ['Listen now', 'Tour dates', 'Merch'],
+    cta: 'Join the club',
+    accent: true,
+  },
+  menu: {
+    cover: `https://picsum.photos/seed/${seed}-menu/480/540`,
+    handle: 'cafe.marlow',
+    name: 'Café Marlow',
+    bio: 'Coffee, pastries & slow mornings. Open 7–3.',
+    links: ['See the menu', 'Order pickup', 'Find us'],
+    cta: 'Reserve a table',
+    accent: false,
+  },
+} as const;
+
+const t = templates[template];
+---
+
+<div class={`phone ${className}`}>
+  <div class="phone__notch"></div>
+  <div class="phone__screen">
+    <div class="mini">
+      <div class="mini__cover">
+        <img src={t.cover} alt="" loading={eager ? 'eager' : 'lazy'} decoding="async" width="480" height="540" />
+        <div class="mini__cover-fade"></div>
+      </div>
+      <div class="mini__body">
+        <div class="mini__handle">{t.handle}</div>
+        <div class="mini__name">{t.name}</div>
+        <p class="mini__bio">{t.bio}</p>
+        <div class="mini__links">
+          {t.links.map((l) => <div class="mini__link">{l}</div>)}
+        </div>
+        <div class={`mini__cta ${t.accent ? 'mini__cta--blue' : ''}`}>{t.cta}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mini {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    font-size: 10px;
+  }
+
+  .mini__cover {
+    position: relative;
+    height: 42%;
+    overflow: hidden;
+  }
+
+  .mini__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mini__cover-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(255, 255, 255, 0.9) 100%);
+  }
+
+  .mini__body {
+    flex: 1;
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -18px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mini__handle {
+    font-size: 8px;
+    color: #6e6e73;
+    letter-spacing: 0.02em;
+  }
+
+  .mini__name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #000;
+    margin-top: 2px;
+    line-height: 1.05;
+  }
+
+  .mini__bio {
+    font-size: 8.5px;
+    line-height: 1.35;
+    color: #5e5e5e;
+    margin-top: 5px;
+  }
+
+  .mini__links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 11px;
+  }
+
+  .mini__link {
+    border: 1px solid #171717;
+    border-radius: 999px;
+    padding: 7px 10px;
+    font-size: 9px;
+    font-weight: 500;
+    color: #171717;
+    text-align: center;
+  }
+
+  .mini__cta {
+    margin-top: auto;
+    border-radius: 999px;
+    padding: 8px 10px;
+    font-size: 9.5px;
+    font-weight: 500;
+    text-align: center;
+    background: #171717;
+    color: #fff;
+  }
+
+  .mini__cta--blue {
+    background: #3b82f6;
+  }
+</style>
